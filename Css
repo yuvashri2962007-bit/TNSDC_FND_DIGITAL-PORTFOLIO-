@@ -1,0 +1,19 @@
+:root{
+  --bg-start: #fff6fb;
+  --bg-end: #f8f1ff;
+  --ink: #2d2433;
+  --accent-1: #ff7eb3;  /* pink */
+  --accent-2: #ffd1dc;  /* blush */
+  --accent-3: #b28dff;  /* lilac */
+  --btn: #2d2433;
+  --btn-ink: #ffffff;
+  --ring: rgba(178,141,255,.35);
+}
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin:0;
+  color:var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 700px at 70% 20%, var(--bg
