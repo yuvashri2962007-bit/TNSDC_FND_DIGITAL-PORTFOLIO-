@@ -1,0 +1,51 @@
+/**
+ * script.js
+ * Makeup Artist Title — Sparkles + Shimmer controller
+ *
+ * Usage:
+ *   1. Include this file after your HTML (before </body>).
+ *   2. Call with settings if you want custom behavior:
+ *        initMakeupTitle({ selector: '.title-name', sparkleInterval: 650 });
+ *   3. If you don't call it, the script will auto-init with defaults.
+ *
+ * Behavior:
+ *  - Adds a gentle shimmer overlay to the title (CSS required: .title-name::after)
+ *  - Spawns "sparkle" DOM elements around the title at a relaxed cadence
+ *  - Increases sparkle frequency on hover/focus for delight
+ *  - Respects prefers-reduced-motion
+ */
+
+(function globalMakeupTitle() {
+  const DEFAULTS = {
+    selector: '.title-name',      // element that receives shimmer & near which sparkles spawn
+    sparkleInterval: 650,         // ms between sparkles normally
+    sparkleBoostInterval: 240,    // ms between sparkles on hover/focus
+    sparkleLifetime: 950,         // ms before removing sparkle element
+    sparkleSize: 9,               // px (diameter)
+    attachToBody: true,          // append sparkle elements to document.body (recommended)
+    maxSimultaneous: 18,         // safety cap
+    autoInit: true,              // auto initialize on load
+  };
+
+  // Utility: merge options
+  function merge(opts = {}) {
+    return Object.assign({}, DEFAULTS, opts);
+  }
+
+  // Create a sparkle element (styled inline so it's independent of CSS file)
+  function createSparkleEl(sizePx) {
+    const s = document.createElement('span');
+    s.className = 'makeup-sparkle';
+    const size = Math.max(4, Math.round(sizePx));
+    Object.assign(s.style, {
+      position: 'absolute',
+      width: `${size}px`,
+      height: `${size}px`,
+      borderRadius: '50%',
+      pointerEvents: 'none',
+      zIndex: 9999,
+      transform: 'translate(-50%, -50%)',
+      // small layered radial glows to mimic sparkle — subtle so it layers nicely
+      background:
+        'radial-gradient(circle at 35% 35%, rgba(255,255,255,1), rgba(255,255,255,0.6) 40%, transparent 70%), ' +
+        'radial-gradient(circle at 65% 65%, rgba
